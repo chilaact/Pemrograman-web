@@ -4,157 +4,98 @@
   include ('conn.php'); 
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" href="assets/css/grid/960_16_col.css">
-    <link rel="stylesheet" href="assets/css/grid/text.css" />
-    <link rel="stylesheet" href="assets/css/grid/reset.css" />
-    <title>Personal Website</title>
-    <style>     
-  button[href] {
-    width: 100%;
-    background-color: #d6d5c9;
-    color: black;
-    padding: 14px 20px;
-    margin: 8px 0;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-family: 'Century Gothic',sans-serif;
-  }
-  </style>
+  <title>Halaman Biodata</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </head>
-<body style="background-image: url(assets/img/bg2.jpg);">
+<body>
 
-    <div class="container_16">
-    
-    <div class="grid_2">   
-    <form action="index.php" method="post">
-    <button href="index.php">KEMBALI</button>
-    </form>
-    </div>
-                  
-        <div class="grid_15"> 
+<div class="jumbotron text-center">
+  <h1>Data Diri</h1>
+  <p>Berikut data diri yang telah dimasukan di website ini</p> 
+</div>
+  
+<div class="container">
+<?php
+    if ( isset( $_GET['id'] ) && !empty( $_GET['id'] ) ){
+        $id = $_GET['id'];
+        $query = "SELECT * FROM identitas id join isi_biodata isi on id.id_identitas=isi.id_identitas where id.id_identitas = $id";
+        $result = mysqli_query(connection(),$query);
+      while($data = mysqli_fetch_array($result)){  
+?>
+<a href="home.php" class="btn btn-primary mb-4">Kembali</a>
+<div class="row">
+        <div class="col-md-3">
+        <img class="card-img-top" src="assets/img/anone.jpg" alt="Card image">
         </div>
+        <div class="col-md-9">
+        <h1><?php echo $data['nama'];  ?></h1>
+        <h3><?php echo $data['profesi'];  ?></h3> <br>
 
-        <div class="grid_7">
-                  <?php 
+        <h5>Deskripsi</h5>
+        <p><?php echo $data['deskripsi'];  ?></p>
+
+        <p>Tanggal Lahir  : <?php echo $data['tanggal_lahir'];  ?></p>
+        <p>Berat / Tinggi : <?php echo $data['berat'];  ?> kg/ <?php echo $data['tinggi'];  ?> cm</p>
+        <p>Alamat         : <?php echo $data['alamat'];  ?></p>
+        </div>
+</div>
+<div class="row">
+  <div class="col-md-6"> 
+  <h5>Hobi</h5>
+  <p><?php echo $data['hobi'];  ?></p>
+  </div>
+  <div class="col-md-6"> 
+  <h5>Motto</h5>
+  <p><?php echo $data['motto'];  ?></p>
+  </div>
+</div>
+  
+<div class="row">
+  <div class="col-md-6"> 
+  <h5>Pendidikan</h5>
+  <p>SD : <?php echo $data['sd'];  ?></p>
+  <p>SMP : <?php echo $data['smp'];  ?></p>
+  <p>SMA : <?php echo $data['sma'];  ?></p>
+  <p>Universitas : <?php echo $data['universitas'];  ?></p>
+  </div>
+  <div class="col-md-6"> 
+  <h5>Sosial Media</h5>
+  <p>Instagram : <?php echo $data['instagram'];  ?></p>
+  <p>Linkedin : <?php echo $data['linkedin'];  ?></p>
+  <p>GitHub : <?php echo $data['github'];  ?></p>
+  <p>Email : <?php echo $data['email'];  ?></p>
+  </div>
+</div>
+
+<?php }}else{ ?>
+  <a href="index.php" class="btn btn-primary mb-4">Kembali Ke Form</a>
+  <div class="row">
+    <?php 
                   //proses menampilkan data dari database:
                   //siapkan query SQL
-                  $query = "SELECT * FROM identitas";
+                  $query = "SELECT * FROM identitas id join isi_biodata isi where id.id_identitas=isi.id_identitas";
                   $result = mysqli_query(connection(),$query);
-                 ?>
-                 <?php while($data = mysqli_fetch_array($result)): ?>
-                <img src="assets/img/anone.jpg" alt="" class="kotak-tengah-img">
-                <h2>
-                    <?php echo $data['nama'];  ?>
-                    </h2>
-                <h3>
-                    Berat : <?php echo $data['berat'];  ?>
-                    </h3>
-                <h3>
-                    Tinggi : <?php echo $data['tinggi'];  ?>
-                    </h3>
-                <h3>
-                    Alamat : <?php echo $data['alamat'];  ?>
-                    </h3>
-
-                <?php endwhile ?>
-                </div>
-        
-        <div class="grid_9">
-            <div>
-            
-            </div>
-        </div>
-
-    
-        <div class="grid_8" style="background:#d6d5c9; height: 50px; font-size:30px; text-align: center; margin-top: 4%;">
-        <?php 
-                  //proses menampilkan data dari database:
-                  //siapkan query SQL
-                  $query = "SELECT * FROM isi_biodata";
-                  $result = mysqli_query(connection(),$query);
-                 ?>
-                 <?php while($data = mysqli_fetch_array($result)): ?>
-        <h2>
-            DESKRIPSI DIRI
-        </h2>            
-        </div>
-        <div class="grid_8">
-            <p>
-            <?php echo $data['deskripsi'];  ?>
-            </p>
-    </div>
-
-    <div class="clear"></div>
-
-    <div class="grid_7" style="background:#d6d5c9; height: 45px; font-size:30px; text-align: center; margin-top: 38px; padding-bottom: 3px;">
-        <h2>
-            KONTAK
-        </h2>
-        <div class="grid_8">
-            <p>    
-            <?php echo $data['instagram'];  ?>             
-            </p>
-            <p> 
-            <?php echo $data['linkedin'];  ?>
-                </p>
-            <p>    
-            <?php echo $data['github'];  ?>
-                </p>
-            <p>
-            <?php echo $data['email'];  ?>
-                </p> 
-        </div>
-    </div>
-
-    <div class="grid_8" style="background:#d6d5c9; height: 50px; font-size:30px; text-align: center; margin-top: 4%;">
-        <h2>
-            PENDIDIKAN
-        </h2>
-        <div class="grid_8">
-            <p>    
-                <?php echo $data['sd'];  ?>             
-            </p>
-            <p> 
-            <?php echo $data['smp'];  ?>
-                </p>
-            <p>    
-            <?php echo $data['sma'];  ?>
-                </p>
-            <p>
-            <?php echo $data['universitas'];  ?>
-                </p> 
-        </div>
-    </div>
-    
-    <div class="grid_8" style="background:#d6d5c9; height: 50px; font-size:30px; text-align: center; margin-top: 3%;">
-            <h2>
-                HOBI
-            </h2>
-            <div class="grid_7-hobby">
-                    <p>             
-                        <?php echo $data['hobi'];  ?>
-                    </p>
-                </div>
-        </div>
-
-        
-    <div class="grid_8" style="background:#d6d5c9; height: 50px; font-size:30px; text-align: center; margin-top: 11%;">
-            <h2>
-                MOTTO HIDUP
-            </h2> 
-        <div class="grid_8-seminar">
-                <p>   
-                <?php echo $data['motto'];  ?>           
-                    </p>
-            </div>
-    </div>
-    <?php endwhile ?>
+                while($data = mysqli_fetch_array($result)): ?>
+    <div class="col-md-3">
+    <div class="card">
+    	<img class="card-img-top" src="assets/img/anone.jpg" alt="Card image">
+    <div class="card-body">
+      <h4 class="card-title"><?php echo $data['nama'];  ?></h4>
+      <p class="card-text"><?php echo $data['profesi'];  ?></p>
+      <a href="?id=<?php echo $data['id_identitas'];  ?>" class="btn btn-primary">Detail</a>
+  	</div>
+  </div></div>
+  <?php endwhile ?>
+<?php }?>
+  </div>
+</div>
 
 </body>
 </html>

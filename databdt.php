@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Example</title>
+    <title>Halaman Form</title>
     <!-- load css boostrap -->
     <link href="assets/css/bootstrap.min.css" rel="stylesheet">
     <link href="assets/css/dashboard.css" rel="stylesheet">
@@ -88,7 +88,6 @@
                       &nbsp;&nbsp;
                       <a href="<?php echo "deletebdt.php?id_identitas=".$data['id_identitas']; ?>" class="btn btn-outline-danger btn-sm"> Delete</a>
                       &nbsp;&nbsp;
-                      <a href="<?php echo "detailbdt.php?id_identitas=".$data['id_identitas']; ?>" class="btn btn-outline-success btn-sm"> Detail</a>
                     </td>
                   </tr>
                  <?php endwhile ?>

@@ -38,7 +38,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Example</title>
+    <title>Halaman Form</title>
     <!-- load css boostrap -->
     <link href="assets/css/bootstrap.min.css" rel="stylesheet">
     <link href="assets/css/dashboard.css" rel="stylesheet">

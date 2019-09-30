@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Tugas5</title>
+    <title>Halaman Form</title>
     <!-- load css boostrap -->
     <link href="assets/css/bootstrap.min.css" rel="stylesheet">
     <link href="assets/css/dashboard.css" rel="stylesheet">
@@ -104,7 +104,6 @@
                       &nbsp;&nbsp;
                       <a href="<?php echo "delete.php?isi_id=".$data['isi_id']; ?>" class="btn btn-outline-danger btn-sm"> Delete</a>
                       &nbsp;&nbsp;
-                      <a href="<?php echo "detail.php?isi_id=".$data['isi_id']; ?>" class="btn btn-outline-success btn-sm"> Detail</a>
                     </td>
                   </tr>
                  <?php endwhile ?>
