@@ -29,10 +29,53 @@
         $result = mysqli_query(connection(),$query);
       while($data = mysqli_fetch_array($result)){  
 ?>
-<a href="homee.php" class="btn btn-primary">Kembali</a>
+<a href="homee.php" class="btn btn-primary mb-4">Kembali</a>
 <div class="row">
+        <div class="col-md-3">
+        <img class="card-img-top" src="assets/img/anone.jpg" alt="Card image">
+        </div>
+        <div class="col-md-9">
+        <h1><?php echo $data['nama'];  ?></h1>
+        <h3><?php echo $data['profesi'];  ?></h3> <br>
 
+        <h5>Deskripsi</h5>
+        <p><?php echo $data['deskripsi'];  ?></p>
+
+        <p>Tanggal Lahir  : <?php echo $data['deskripsi'];  ?></p>
+        <p>Berat / Tinggi : <?php echo $data['deskripsi'];  ?> kg/ <?php echo $data['deskripsi'];  ?> cm</p>
+        <p>Alamat         : <?php echo $data['deskripsi'];  ?></p>
+        </div>
 </div>
+<div class="row">
+  <div class="col-md-6"> 
+  <h5>Hobi</h5>
+  <p><?php echo $data['deskripsi'];  ?></p>
+  </div>
+  <div class="col-md-6"> 
+  <h5>Motto</h5>
+  <p><?php echo $data['deskripsi'];  ?></p>
+  </div>
+</div>
+  
+<div class="row">
+  <div class="col-md-6"> 
+  <h5>Pendidikan</h5>
+  <p>SD :<?php echo $data['deskripsi'];  ?></p>
+  <p>SMP :<?php echo $data['deskripsi'];  ?></p>
+  <p>SMA :<?php echo $data['deskripsi'];  ?></p>
+  <p>Universitas :<?php echo $data['deskripsi'];  ?></p>
+  </div>
+  <div class="col-md-6"> 
+  <h5>Sosial Media</h5>
+  <p>SD :<?php echo $data['deskripsi'];  ?></p>
+  <p>SMP :<?php echo $data['deskripsi'];  ?></p>
+  <p>SMA :<?php echo $data['deskripsi'];  ?></p>
+  <p>Universitas :<?php echo $data['deskripsi'];  ?></p>
+  </div>
+</div>
+
+
+  
 
 
 <?php }}else{ ?>
